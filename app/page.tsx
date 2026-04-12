@@ -1,65 +1,95 @@
-import Image from "next/image";
+import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      {/* Hero Section */}
+      <section className="hero">
+        <img src="/images/hero.jpg" alt="House of Nihara Hero" className="hero-bg" />
+        <div className="hero-content animate-float">
+          <h1>Elegance in Every Stitch</h1>
+          <p>Elevate your wardrobe with our meticulously crafted collection of long flowing gowns, party wear, and custom designs.</p>
+          <div className="btn-group">
+            <Link href="/contact" className="btn btn-primary">Book Consultation</Link>
+            <Link href="/gallery" className="btn btn-secondary">View Lookbook</Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+      </section>
+
+      {/* Services / Bespoke Section */}
+      <section className="fade-in-section">
+        <h2 className="section-title">The Bespoke Experience</h2>
+        <div className="grid-3">
+          <Link href="/contact" className="product-card">
+            <div className="product-img-wrapper">
+              <img src="/images/gowns/blue-gown.jpg" alt="Custom Gowns" loading="lazy" />
+            </div>
+            <div className="product-info">
+              <h3 className="product-title">Custom Couture</h3>
+              <span className="product-category" style={{ textTransform: 'none', letterSpacing: '0', fontSize: '0.95rem' }}>Meticulously tailored to contour your individuality.</span>
+            </div>
+          </Link>
+          <Link href="/contact" className="product-card">
+            <div className="product-img-wrapper">
+              <img src="/images/gallery/atelier.jpg" alt="Private Fitting" loading="lazy" />
+            </div>
+            <div className="product-info">
+              <h3 className="product-title">Private Fittings</h3>
+              <span className="product-category" style={{ textTransform: 'none', letterSpacing: '0', fontSize: '0.95rem' }}>Experience white-glove tailoring at our atelier.</span>
+            </div>
+          </Link>
+          <Link href="/contact" className="product-card">
+            <div className="product-img-wrapper">
+              <img src="/images/partywear/pink-dress.jpg" alt="Event Styling" loading="lazy" />
+            </div>
+            <div className="product-info">
+              <h3 className="product-title">Event Styling</h3>
+              <span className="product-category" style={{ textTransform: 'none', letterSpacing: '0', fontSize: '0.95rem' }}>Curated elegance for your most significant moments.</span>
+            </div>
+          </Link>
+        </div>
+      </section>
+
+      {/* About Preview */}
+      <section className="fade-in-section">
+        <div className="about-preview">
+          <div className="about-image">
+            <img src="/images/gallery/atelier.jpg" alt="House of Nihara Atelier" loading="lazy" />
+          </div>
+          <div className="about-text">
+            <h2>Our Heritage</h2>
+            <p>House of Nihara is more than just a brand; it&apos;s a celebration of femininity, grace, and confidence. Our creations reflect a commitment to quality, featuring intricate details and luxurious fabrics tailored for the modern woman.</p>
+            <Link href="/about" className="btn btn-secondary">Discover Our Story</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Instagram Feed */}
+      <section className="fade-in-section">
+        <h2 className="section-title">Follow @house_of__nihara</h2>
+        <div className="instagram-grid">
+          <a href="https://instagram.com/house_of__nihara" className="insta-item" target="_blank" rel="noopener noreferrer">
+            <img src="/images/gallery/ig1.jpg" alt="Instagram Post 1" loading="lazy" />
+            <div className="insta-overlay">♥ 124</div>
           </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
+          <a href="https://instagram.com/house_of__nihara" className="insta-item" target="_blank" rel="noopener noreferrer">
+            <img src="/images/gallery/ig2.jpg" alt="Instagram Post 2" loading="lazy" />
+            <div className="insta-overlay">♥ 312</div>
+          </a>
+          <a href="https://instagram.com/house_of__nihara" className="insta-item" target="_blank" rel="noopener noreferrer">
+            <img src="/images/gallery/ig3.jpg" alt="Instagram Post 3" loading="lazy" />
+            <div className="insta-overlay">♥ 205</div>
+          </a>
+          <a href="https://instagram.com/house_of__nihara" className="insta-item" target="_blank" rel="noopener noreferrer">
+            <img src="/images/gallery/ig4.jpg" alt="Instagram Post 4" loading="lazy" />
+            <div className="insta-overlay">♥ 428</div>
+          </a>
+          <a href="https://instagram.com/house_of__nihara" className="insta-item" target="_blank" rel="noopener noreferrer">
+            <img src="/images/gallery/ig5.jpg" alt="Instagram Post 5" loading="lazy" />
+            <div className="insta-overlay">♥ 189</div>
           </a>
         </div>
-      </main>
-    </div>
+      </section>
+    </>
   );
 }
