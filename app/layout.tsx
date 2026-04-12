@@ -5,8 +5,11 @@ import Footer from "../components/Footer";
 import ScrollAnimation from "../components/ScrollAnimation";
 
 export const metadata: Metadata = {
-  title: "House of Nihara | Elegance in Every Stitch",
-  description: "Discover premium handcrafted women's fashion, evening gowns, and party wear at House of Nihara.",
+  title: "House of Nihara - Handmade & Unique Collections",
+  description: "House of Nihara offers premium handmade products and unique fashion collections. Shop now for stylish and elegant designs.", 
+  verification: {
+    google: "XWHlBkgXblCZGA2XwO7VOvddLFz0swYzl7t2YXx4jzM",
+  },
 };
 
 export default function RootLayout({
