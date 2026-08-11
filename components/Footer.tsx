@@ -1,40 +1,151 @@
+"use client";
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function Footer() {
+    const [email, setEmail] = useState('');
+    const [subscribed, setSubscribed] = useState(false);
+
+    const handleSubscribe = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (email) {
+            setSubscribed(true);
+            setEmail('');
+        }
+    };
+
     return (
-        <footer>
-            <div className="footer-content">
-                <div className="footer-col logo-col">
-                    <h3>House of Nihara</h3>
-                    <p>Premium handcrafted fashion label embodying luxury, grace, and confidence.</p>
+        <footer className="nihara-site-footer">
+            <div className="container">
+                <div className="footer-main-grid">
+                    {/* Col 1: Brand Info */}
+                    <div className="footer-brand-col">
+                        <Link href="/" className="footer-logo-wrap">
+                            <div className="footer-logo-circle">
+                                <img src="/images/logo1.jpeg" alt="House of Nihara" className="footer-logo-img" />
+                            </div>
+                            <div className="footer-logo-text">
+                                <span className="footer-brand-sub">HOUSE OF</span>
+                                <span className="footer-brand-name">NIHARA</span>
+                                <span className="footer-brand-tag">COUTURE & ATELIER</span>
+                            </div>
+                        </Link>
+                        <p className="footer-brand-desc">
+                            Celebrating authentic Indian heritage, hand-painted Pichwai lotus artistry, and bespoke tailoring designed for modern grace.
+                        </p>
+                        
+                        {/* Social & Contact Icons */}
+                        <div className="footer-social-icons">
+                            <a 
+                                href="https://wa.me/?text=Hello%20House%20of%20Nihara,%20I%20would%20like%20to%20inquire%20about%20your%20collection." 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="social-icon-btn whatsapp-btn"
+                                aria-label="WhatsApp"
+                            >
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                                </svg>
+                            </a>
+                            <a 
+                                href="https://instagram.com/house_of__nihara" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="social-icon-btn instagram-btn"
+                                aria-label="Instagram"
+                            >
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
+                            </a>
+                            <a 
+                                href="tel:+919342629717" 
+                                className="social-icon-btn phone-btn"
+                                aria-label="Phone Hotline"
+                            >
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    {/* Col 2: Collections */}
+                    <div className="footer-links-col">
+                        <h4 className="footer-heading">Collections</h4>
+                        <div className="footer-link-list">
+                            <Link href="/#collection-tabs">Lotus Dresses</Link>
+                            <Link href="/#hair-accessories">Hair Accessories</Link>
+                            <Link href="/gallery">Editorial Lookbook</Link>
+                            <Link href="/contact">Custom Couture</Link>
+                        </div>
+                    </div>
+
+                    {/* Col 3: Atelier Information */}
+                    <div className="footer-links-col">
+                        <h4 className="footer-heading">Atelier</h4>
+                        <div className="footer-link-list">
+                            <Link href="/about">Our Story</Link>
+                            <Link href="/contact">Book Consultation</Link>
+                            <Link href="/contact">Custom Sizing Guide</Link>
+                            <Link href="/contact">Worldwide Shipping</Link>
+                        </div>
+                    </div>
+
+                    {/* Col 4: Newsletter & Inquiries */}
+                    <div className="footer-newsletter-col">
+                        <h4 className="footer-heading">Stay Connected</h4>
+                        <p className="footer-news-desc">
+                            Subscribe for exclusive private drops, festive collections, and styling insights.
+                        </p>
+
+                        {subscribed ? (
+                            <div className="footer-sub-success">
+                                <span>✓ Thank you for subscribing!</span>
+                            </div>
+                        ) : (
+                            <form onSubmit={handleSubscribe} className="footer-newsletter-form">
+                                <input 
+                                    type="email" 
+                                    placeholder="Enter your email" 
+                                    required 
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    className="footer-email-input"
+                                />
+                                <button type="submit" className="footer-submit-btn">
+                                    Join
+                                </button>
+                            </form>
+                        )}
+
+                        <div className="footer-wa-quick">
+                            <a 
+                                href="https://wa.me/?text=Hello%20House%20of%20Nihara,%20I'm%20reaching%20out%20from%20your%20website." 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="footer-wa-pill"
+                            >
+                                <span className="wa-dot"></span>
+                                <span>Stylist Online • Chat on WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div className="footer-col">
-                    <h3>Quick Links</h3>
-                    <div className="footer-links">
-                        <Link href="/contact">Book Consultation</Link>
-                        <Link href="/about">About Us</Link>
+
+                {/* Footer Bottom */}
+                <div className="footer-bottom-bar">
+                    <p className="footer-copy">
+                        &copy; 2026 House of Nihara. All rights reserved. Handcrafted with passion in India.
+                    </p>
+                    <div className="footer-legal-links">
+                        <Link href="/about">Heritage</Link>
+                        <span>•</span>
                         <Link href="/gallery">Lookbook</Link>
+                        <span>•</span>
+                        <Link href="/contact">Contact</Link>
                     </div>
                 </div>
-                <div className="footer-col">
-                    <h3>Contact & Policies</h3>
-                    <div className="footer-links">
-                        <Link href="/contact">Contact Us</Link>
-                        <Link href="#">Shipping Policy</Link>
-                        <Link href="#">Returns</Link>
-                    </div>
-                </div>
-                <div className="footer-col">
-                    <h3>Newsletter</h3>
-                    <p>Subscribe for exclusive drops and high-fashion insights.</p>
-                    <div style={{ display: 'flex', gap: '10px' }}>
-                        <input type="email" placeholder="Your email address" style={{ padding: '10px', flex: 1, border: 'none', color: 'black' }} />
-                        <button className="btn btn-primary" style={{ padding: '10px 20px' }}>Join</button>
-                    </div>
-                </div>
-            </div>
-            <div className="footer-bottom">
-                <p>&copy; 2026 House of Nihara. All rights reserved.</p>
             </div>
         </footer>
     );
