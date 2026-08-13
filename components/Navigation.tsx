@@ -52,16 +52,16 @@ export default function Navigation() {
                         <a 
                             href="/#collection-tabs" 
                             className="nav-tab-item"
-                            onClick={() => setIsOpen(false)}
+                            onClick={(e) => {
+                                setIsOpen(false);
+                                if (pathname === '/') {
+                                    e.preventDefault();
+                                    const el = document.getElementById('collection-tabs');
+                                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                                }
+                            }}
                         >
                             <span>Dresses</span>
-                        </a>
-                        <a 
-                            href="/#hair-accessories" 
-                            className="nav-tab-item"
-                            onClick={() => setIsOpen(false)}
-                        >
-                            <span>Hair Accessories</span>
                         </a>
                         <Link 
                             href="/gallery" 
@@ -86,7 +86,7 @@ export default function Navigation() {
                     {/* Right CTA Button */}
                     <div className="nav-actions">
                         <a 
-                            href="https://wa.me/?text=Hello%20House%20of%20Nihara,%20I%20would%20like%20to%20inquire%20about%20your%20collection." 
+                            href="https://wa.me/919342629717?text=Hello%20House%20of%20Nihara,%20I%20would%20like%20to%20inquire%20about%20your%20collection." 
                             target="_blank" 
                             rel="noopener noreferrer" 
                             className="nav-whatsapp-btn"
@@ -116,11 +116,18 @@ export default function Navigation() {
                         <Link href="/" className={pathname === '/' ? 'active' : ''} onClick={() => setIsOpen(false)}>
                             Home
                         </Link>
-                        <a href="/#collection-tabs" onClick={() => setIsOpen(false)}>
-                            Dresses Collection
-                        </a>
-                        <a href="/#hair-accessories" onClick={() => setIsOpen(false)}>
-                            Hair Accessories
+                        <a 
+                            href="/#collection-tabs" 
+                            onClick={(e) => {
+                                setIsOpen(false);
+                                if (pathname === '/') {
+                                    e.preventDefault();
+                                    const el = document.getElementById('collection-tabs');
+                                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                                }
+                            }}
+                        >
+                            Dresses & Collections
                         </a>
                         <Link href="/gallery" className={pathname === '/gallery' ? 'active' : ''} onClick={() => setIsOpen(false)}>
                             Lookbook
@@ -135,7 +142,7 @@ export default function Navigation() {
                     <div className="mobile-drawer-footer">
                         <p className="atelier-note">Bespoke Couture by House of Nihara</p>
                         <a 
-                            href="https://wa.me/?text=Hello%20House%20of%20Nihara,%20I%20would%20like%20to%20inquire%20about%20your%20collection." 
+                            href="https://wa.me/919342629717?text=Hello%20House%20of%20Nihara,%20I%20would%20like%20to%20inquire%20about%20your%20collection." 
                             target="_blank" 
                             rel="noopener noreferrer" 
                             className="mobile-wa-btn"

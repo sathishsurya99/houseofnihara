@@ -73,7 +73,7 @@ export default function Home() {
           <div className="heritage-grid">
             <div className="heritage-image-wrapper">
               <img 
-                src="/images/slider/slide1.jpg" 
+                src="/images/dresses/dress-geometric-coord.jpg" 
                 alt="House of Nihara Atelier Creation" 
                 className="heritage-main-img" 
                 loading="lazy" 
@@ -117,31 +117,31 @@ export default function Home() {
 
           <div className="insta-feed-grid">
             <a href="https://instagram.com/house_of__nihara" target="_blank" rel="noopener noreferrer" className="insta-card">
-              <img src="/images/dresses/lotus-pink.jpg" alt="Rani Pink Kurti" loading="lazy" />
+              <img src="/images/dresses/dress-geometric-coord.jpg" alt="Terracotta & Sage Geometric Flare Co-ord" loading="lazy" />
               <div className="insta-hover-overlay">
-                <span>♥ 482</span>
-                <p>#HouseOfNihara #LotusPink</p>
+                <span>♥ 782</span>
+                <p>#HouseOfNihara #GeometricCoord #StudioStyle</p>
               </div>
             </a>
             <a href="https://instagram.com/house_of__nihara" target="_blank" rel="noopener noreferrer" className="insta-card">
-              <img src="/images/dresses/lotus-purple.jpg" alt="Amethyst Kurti" loading="lazy" />
+              <img src="/images/salwar/salwar-plum-slate-rose.jpg" alt="Vintage Plum Rose & Slate Blue Salwar" loading="lazy" />
+              <div className="insta-hover-overlay">
+                <span>♥ 649</span>
+                <p>#SalwarSuitSet #PlumRose #ArtisanalSilk</p>
+              </div>
+            </a>
+            <a href="https://instagram.com/house_of__nihara" target="_blank" rel="noopener noreferrer" className="insta-card">
+              <img src="/images/salwar/salwar-teal-lime-botanical.jpg" alt="Teal Aqua Botanical Salwar Set" loading="lazy" />
+              <div className="insta-hover-overlay">
+                <span>♥ 825</span>
+                <p>#TealLime #FestiveCouture #ZariWeave</p>
+              </div>
+            </a>
+            <a href="https://instagram.com/house_of__nihara" target="_blank" rel="noopener noreferrer" className="insta-card">
+              <img src="/images/accessories/acc-satin-tulip-bow-clips.jpg" alt="Handcrafted Satin Tulip Bow Clips" loading="lazy" />
               <div className="insta-hover-overlay">
                 <span>♥ 534</span>
-                <p>#RoyalPurple #Handcrafted</p>
-              </div>
-            </a>
-            <a href="https://instagram.com/house_of__nihara" target="_blank" rel="noopener noreferrer" className="insta-card">
-              <img src="/images/dresses/lotus-cyan.jpg" alt="Aqua Kurti" loading="lazy" />
-              <div className="insta-hover-overlay">
-                <span>♥ 619</span>
-                <p>#CeruleanLotus #FestiveVibes</p>
-              </div>
-            </a>
-            <a href="https://instagram.com/house_of__nihara" target="_blank" rel="noopener noreferrer" className="insta-card">
-              <img src="/images/accessories/pearl-headband.png" alt="Pearl Headband" loading="lazy" />
-              <div className="insta-hover-overlay">
-                <span>♥ 389</span>
-                <p>#HairAccessories #Pearls</p>
+                <p>#HandmadeAccessories #TulipBow #FloralClips</p>
               </div>
             </a>
           </div>

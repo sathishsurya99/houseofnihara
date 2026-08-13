@@ -24,13 +24,13 @@ export default function AboutUs() {
                     <div className="about-split-grid">
                         <div className="about-main-img-box">
                             <img 
-                                src="/images/dresses/dress-rani-lotus.jpg" 
-                                alt="House of Nihara Artisan Dress" 
+                                src="/images/dresses/dress-geometric-coord.jpg" 
+                                alt="House of Nihara Studio Creation" 
                                 className="about-image"
                             />
                             <div className="about-floating-card">
                                 <span className="floating-highlight">HANDMADE IN INDIA</span>
-                                <p>Preserving Pichwai motifs & master tailoring</p>
+                                <p>Preserving artisanal craft & bespoke tailoring</p>
                             </div>
                         </div>
 
@@ -120,8 +120,8 @@ export default function AboutUs() {
                             <div className="thumb-caption">Satin Strawberry Blossom Clips</div>
                         </div>
                         <div className="gallery-thumb">
-                            <img src="/images/accessories/acc-seashell-claws.jpg" alt="Scalloped Seashell Claws" loading="lazy" />
-                            <div className="thumb-caption">Scalloped Seashell Claws</div>
+                            <img src="/images/accessories/acc-satin-tulip-bow-clips.jpg" alt="Handcrafted Satin Tulip Bow Clips" loading="lazy" />
+                            <div className="thumb-caption">Satin Ribbon Tulip Bow Clips</div>
                         </div>
                     </div>
                 </div>
@@ -136,7 +136,7 @@ export default function AboutUs() {
                         <p>Connect with our styling consultants directly on WhatsApp to design your custom tailored outfit.</p>
                         <div className="about-cta-btns">
                             <a 
-                                href="https://wa.me/?text=Hello%20House%20of%20Nihara,%20I%20would%20like%20to%20consult%20about%20a%20bespoke%20dress%20and%20accessories." 
+                                href="https://wa.me/919342629717?text=Hello%20House%20of%20Nihara,%20I%20would%20like%20to%20consult%20about%20a%20bespoke%20dress%20and%20accessories." 
                                 target="_blank" 
                                 rel="noopener noreferrer" 
                                 className="nav-whatsapp-btn"

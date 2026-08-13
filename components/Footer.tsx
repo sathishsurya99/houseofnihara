@@ -37,7 +37,7 @@ export default function Footer() {
                         {/* Social & Contact Icons */}
                         <div className="footer-social-icons">
                             <a 
-                                href="https://wa.me/?text=Hello%20House%20of%20Nihara,%20I%20would%20like%20to%20inquire%20about%20your%20collection." 
+                                href="https://wa.me/919342629717?text=Hello%20House%20of%20Nihara,%20I%20would%20like%20to%20inquire%20about%20your%20collection." 
                                 target="_blank" 
                                 rel="noopener noreferrer" 
                                 className="social-icon-btn whatsapp-btn"
@@ -121,7 +121,7 @@ export default function Footer() {
 
                         <div className="footer-wa-quick">
                             <a 
-                                href="https://wa.me/?text=Hello%20House%20of%20Nihara,%20I'm%20reaching%20out%20from%20your%20website." 
+                                href="https://wa.me/919342629717?text=Hello%20House%20of%20Nihara,%20I'm%20reaching%20out%20from%20your%20website." 
                                 target="_blank" 
                                 rel="noopener noreferrer" 
                                 className="footer-wa-pill"

@@ -18,30 +18,54 @@ interface Slide {
 const slides: Slide[] = [
     {
         id: 1,
-        image: "/images/dresses/dress-rani-lotus.jpg",
-        tag: "EXCLUSIVE • LOTUS EDITION",
-        title: "Rani Pink Pichwai Lotus Kurti",
-        subtitle: "Handcrafted Pichwai lotus blooms and sacred cow motif on premium vibrant fuchsia raw silk.",
-        price: "₹2,899",
-        color: "Rani Fuchsia",
-        accentColor: "#E91E63",
-        bgGradient: "radial-gradient(ellipse at 80% 50%, rgba(233, 30, 99, 0.22) 0%, rgba(20, 18, 22, 0.98) 70%)",
-        fabric: "Pure Raw Silk Blend with Cotton Lining"
+        image: "/images/dresses/dress-geometric-coord.jpg",
+        tag: "NEW STUDIO ARRIVAL • CO-ORD SET",
+        title: "Terracotta & Sage Geometric Flare Co-ord",
+        subtitle: "Modernist flared A-line silhouette with earthy capsule motifs and matching tailored cigarette trousers.",
+        price: "₹2,999",
+        color: "Terracotta & Sage",
+        accentColor: "#D97736",
+        bgGradient: "radial-gradient(ellipse at 80% 50%, rgba(217, 119, 54, 0.25) 0%, rgba(20, 18, 22, 0.98) 70%)",
+        fabric: "Artisanal Linen-Silk Blend with Matching Trousers"
     },
     {
         id: 2,
-        image: "/images/dresses/dress-purple-lotus.jpg",
-        tag: "HERITAGE COUTURE",
-        title: "Amethyst Bloom Silk Ensemble",
-        subtitle: "Regal royal purple silhouette adorned with floating lotus petal prints and delicate craftsmanship.",
-        price: "₹2,899",
-        color: "Royal Purple",
-        accentColor: "#8E24AA",
-        bgGradient: "radial-gradient(ellipse at 80% 50%, rgba(142, 36, 170, 0.22) 0%, rgba(20, 18, 22, 0.98) 70%)",
-        fabric: "Artisanal Silk with Gold Thread Finish"
+        image: "/images/dresses/dress-mint-floral-scallop.jpg",
+        tag: "STUDIO EXCLUSIVE • BOTANICAL SILK",
+        title: "Seafoam Mint Scallop Floral Kurti",
+        subtitle: "Breathtaking hand-painted rose poppy botanical artwork with scalloped keyhole neckline & organza puff sleeves.",
+        price: "₹2,999",
+        color: "Seafoam Aqua",
+        accentColor: "#26A69A",
+        bgGradient: "radial-gradient(ellipse at 80% 50%, rgba(38, 166, 154, 0.25) 0%, rgba(20, 18, 22, 0.98) 70%)",
+        fabric: "Organza Silk Blend with Sheer Puff Sleeves"
     },
     {
         id: 3,
+        image: "/images/dresses/dress-cyan-yellow-panel.jpg",
+        tag: "TEMPLE BROCADE • FESTIVE COUTURE",
+        title: "Cerulean Blue & Canary Temple Brocade Kurti",
+        subtitle: "Striking royal cyan silk with a center canary yellow temple brocade panel and matching cyan tailored trousers.",
+        price: "₹3,199",
+        color: "Royal Cyan & Canary Yellow",
+        accentColor: "#00ACC1",
+        bgGradient: "radial-gradient(ellipse at 80% 50%, rgba(0, 172, 193, 0.25) 0%, rgba(20, 18, 22, 0.98) 70%)",
+        fabric: "Artisanal Chanderi Silk with Brocade Insert"
+    },
+    {
+        id: 4,
+        image: "/images/dresses/dress-ikat-pink.jpg",
+        tag: "ARTISANAL GEOMETRIC",
+        title: "Fuchsia Ikat Heritage Co-ord",
+        subtitle: "Classic collared button-down kurti pant suit in vibrant magenta with authentic heritage Ikat geometric weave.",
+        price: "₹2,899",
+        color: "Magenta Ikat",
+        accentColor: "#D81B60",
+        bgGradient: "radial-gradient(ellipse at 80% 50%, rgba(216, 27, 96, 0.22) 0%, rgba(20, 18, 22, 0.98) 70%)",
+        fabric: "Handwoven Ikat Weave Silk Blend"
+    },
+    {
+        id: 5,
         image: "/images/dresses/dress-yellow-floral.jpg",
         tag: "SUMMER SOIRÉE",
         title: "Sunlight Meadow Floral Co-ord",
@@ -53,28 +77,16 @@ const slides: Slide[] = [
         fabric: "Lightweight Breathable Chanderi Blend"
     },
     {
-        id: 4,
-        image: "/images/dresses/dress-emerald-fusion.jpg",
-        tag: "FESTIVE STATEMENT",
-        title: "Cerulean Emerald Panel Dress",
-        subtitle: "Striking emerald and aqua fusion dress featuring a floral brocade central panel and tailored neck.",
-        price: "₹2,999",
-        color: "Emerald Aqua",
-        accentColor: "#00897B",
-        bgGradient: "radial-gradient(ellipse at 80% 50%, rgba(0, 137, 123, 0.22) 0%, rgba(20, 18, 22, 0.98) 70%)",
-        fabric: "Rich Banarasi Silk Brocade & Crepe"
-    },
-    {
-        id: 5,
-        image: "/images/dresses/dress-ikat-pink.jpg",
-        tag: "ARTISANAL GEOMETRIC",
-        title: "Fuchsia Ikat Heritage Co-ord",
-        subtitle: "Classic collar-neck kurti pant suit in vibrant magenta with authentic heritage geometric patterns.",
+        id: 6,
+        image: "/images/dresses/dress-purple-lotus.jpg",
+        tag: "HERITAGE COUTURE",
+        title: "Amethyst Bloom Silk Ensemble",
+        subtitle: "Regal royal purple silhouette adorned with floating lotus petal prints and delicate craftsmanship.",
         price: "₹2,899",
-        color: "Magenta Ikat",
-        accentColor: "#D81B60",
-        bgGradient: "radial-gradient(ellipse at 80% 50%, rgba(216, 27, 96, 0.22) 0%, rgba(20, 18, 22, 0.98) 70%)",
-        fabric: "Handwoven Ikat Weave Silk Blend"
+        color: "Royal Purple",
+        accentColor: "#8E24AA",
+        bgGradient: "radial-gradient(ellipse at 80% 50%, rgba(142, 36, 170, 0.22) 0%, rgba(20, 18, 22, 0.98) 70%)",
+        fabric: "Artisanal Silk with Gold Thread Finish"
     }
 ];
 
@@ -155,7 +167,7 @@ export default function RectangularSlider() {
 
                         <div className="slider-actions-row">
                             <a 
-                                href={`https://wa.me/?text=Hello%20House%20of%20Nihara,%20I'm%20interested%20in%20ordering%20the%20${encodeURIComponent(activeSlide.title)}%20(${encodeURIComponent(activeSlide.price)})`}
+                                href={`https://wa.me/919342629717?text=Hello%20House%20of%20Nihara,%20I'm%20interested%20in%20ordering%20the%20${encodeURIComponent(activeSlide.title)}%20(${encodeURIComponent(activeSlide.price)})`}
                                 target="_blank" 
                                 rel="noopener noreferrer" 
                                 className="slider-primary-cta"

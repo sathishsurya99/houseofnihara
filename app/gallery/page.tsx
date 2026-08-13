@@ -7,6 +7,12 @@ export const metadata: Metadata = {
 
 const lookbookItems = [
     {
+        title: "Terracotta & Sage Geometric Flare Co-ord",
+        category: "Studio Collection",
+        subtitle: "Modernist geometric capsule motifs on flared silhouette with tailored trousers",
+        image: "/images/dresses/dress-geometric-coord.jpg"
+    },
+    {
         title: "Seafoam Mint Scallop Floral Kurti",
         category: "Designer Couture",
         subtitle: "Hand-painted pink poppies on seafoam silk with sheer puff sleeves",
@@ -72,7 +78,68 @@ const lookbookItems = [
         subtitle: "Collared button-down magenta Ikat silhouette",
         image: "/images/dresses/dress-ikat-pink.jpg"
     },
+    // Salwar Suit Sets
+    {
+        title: "Mint Sage English Floral Salwar",
+        category: "Salwar Couture",
+        subtitle: "Mint green English rose garden silk with zari-striped rani pink bottom",
+        image: "/images/salwar/salwar-sage-fuchsia-floral.jpg"
+    },
+    {
+        title: "Earthy Flora & Fuchsia Salwar Set",
+        category: "Salwar Couture",
+        subtitle: "Beige botanical printed silk with zari-striped fuchsia bottom",
+        image: "/images/salwar/salwar-beige-fuchsia-floral.jpg"
+    },
+    {
+        title: "Vintage Plum Rose & Slate Blue Salwar",
+        category: "Salwar Couture",
+        subtitle: "Deep wine floral silk with zari-woven slate indigo bottom",
+        image: "/images/salwar/salwar-plum-slate-rose.jpg"
+    },
+    {
+        title: "Sunburst Peach & Royal Violet Salwar",
+        category: "Salwar Couture",
+        subtitle: "Peach coral wild floral garden with contrast purple zari bottom",
+        image: "/images/salwar/salwar-peach-violet-floral.jpg"
+    },
+    {
+        title: "Teal Aqua Botanical & Lime Salwar",
+        category: "Salwar Couture",
+        subtitle: "Deep teal floral with chartreuse lime zari pinstripe bottom",
+        image: "/images/salwar/salwar-teal-lime-botanical.jpg"
+    },
+    {
+        title: "Dusty Lilac Peony & Ruby Salwar",
+        category: "Salwar Couture",
+        subtitle: "Pastel lilac bouquet with rich ruby magenta zari bottom",
+        image: "/images/salwar/salwar-lilac-magenta-peony.jpg"
+    },
     // Hair accessories
+    {
+        title: "Satin Ribbon Tulip Bow Clips",
+        category: "Handmade Floral",
+        subtitle: "Pastel organza bow clips with cascading twin satin tulips",
+        image: "/images/accessories/acc-satin-tulip-bow-clips.jpg"
+    },
+    {
+        title: "Plush Velvet Fur Tulip Claws",
+        category: "Plush Hair Adornment",
+        subtitle: "Cozy faux fur wrapped claws adorned with satin tulip buds",
+        image: "/images/accessories/acc-plush-tulip-claw-clips.jpg"
+    },
+    {
+        title: "Pastel Polka Bow & Daisy Mini Claws",
+        category: "Hair Adornment",
+        subtitle: "Embossed polka dot bows with miniature daisy flower clips",
+        image: "/images/accessories/acc-polka-bow-flower-claws.jpg"
+    },
+    {
+        title: "Crystal Rhinestone Banana Claws",
+        category: "Luxury Crystal",
+        subtitle: "Faceted crystal gemstone curved banana combs for radiant updos",
+        image: "/images/accessories/acc-rhinestone-crystal-comb-claws.jpg"
+    },
     {
         title: "Ikat Tribal Side Claws",
         category: "Hair Adornment",
