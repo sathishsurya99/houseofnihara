@@ -3,6 +3,7 @@ import "./globals.css";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import ScrollAnimation from "../components/ScrollAnimation";
+import MobileDesktopWarning from "../components/MobileDesktopWarning";
 
 export const viewport: Viewport = {
   width: 1200,
@@ -44,6 +45,7 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
         <ScrollAnimation />
+        <MobileDesktopWarning />
       </body>
     </html>
   );
