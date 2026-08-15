@@ -1,8 +1,12 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import ScrollAnimation from "../components/ScrollAnimation";
+
+export const viewport: Viewport = {
+  width: 1200,
+};
 
 export const metadata: Metadata = {
   title: "House of Nihara - Handmade & Unique Collections",

@@ -1,5 +1,48 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+// Configure your Google Spreadsheet ID here.
+// To use, publish your Google Sheet to the web (File > Share > Publish to web > Whole Document as CSV)
+// and paste its ID here. If kept as "YOUR_SPREADSHEET_ID_HERE" or if loading fails, it defaults to the codebase prices.
+const GOOGLE_SHEET_ID: string = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRu88ByM6H3b0fbTZBZ6YdSEOsDdxbdMRBxoM93zeSSp22vLkBAWoiDO2Li9Bx_G5oRDa8UbZz-X2fK/pub?gid=0&single=true&output=csv";
+
+const parseCSVLine = (text: string) => {
+    const result = [];
+    let insideQuote = false;
+    let current = "";
+    for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        if (char === '"') {
+            insideQuote = !insideQuote;
+        } else if (char === ',' && !insideQuote) {
+            result.push(current.trim());
+            current = "";
+        } else {
+            current += char;
+        }
+    }
+    result.push(current.trim());
+    return result.map(val => val.replace(/^"|"$/g, "").trim());
+};
+
+const convertGoogleDriveLink = (url: string): string => {
+    if (!url) return url;
+
+
+    // Check for drive.google.com/file/d/ID/view
+    const fileIdMatch = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
+    if (fileIdMatch && fileIdMatch[1]) {
+        return `https://drive.google.com/uc?export=view&id=${fileIdMatch[1]}`;
+    }
+
+    // Check for drive.google.com/open?id=ID
+    const openIdMatch = url.match(/drive\.google\.com\/open\?id=([a-zA-Z0-9_-]+)/);
+    if (openIdMatch && openIdMatch[1]) {
+        return `https://drive.google.com/uc?export=view&id=${openIdMatch[1]}`;
+    }
+
+    return url;
+};
 
 interface Product {
     id: string;
@@ -90,7 +133,7 @@ const products: Product[] = [
         originalPrice: "₹3,499",
         tag: "Artisanal Weave",
         image: "/images/dresses/dress-ikat-pink.jpg",
-        color: "Magenta Fuchsia",
+        color: "Ruby Red",
         colorCode: "#C2185B",
         fabric: "Handcrafted Ikat Geometric Silk Blend",
         description: "Sophisticated collared kurti set with matching pants featuring heritage white and peach Ikat geometric diamond motifs. Styled with side slits and button-down collar.",
@@ -151,7 +194,7 @@ const products: Product[] = [
         originalPrice: "₹3,599",
         tag: "Artisanal Silk",
         image: "/images/dresses/dress-lavender-floral-silk.jpg",
-        color: "Pastel Lilac Lavender",
+        color: "Pastel Pink Lavender",
         colorCode: "#AB47BC",
         fabric: "Raw Silk with Woven Gold Zari Border",
         description: "Soft pastel lilac raw silk kurti with hand-painted pink flower branches, butterflies, and a tailored mandarin V-collar with a heavy golden brocade hemline border.",
@@ -189,7 +232,7 @@ const products: Product[] = [
         originalPrice: "₹3,499",
         tag: "Bestseller",
         image: "/images/dresses/dress-rani-lotus.jpg",
-        color: "Rani Fuchsia Pink",
+        color: "Rani Lotus Pink",
         colorCode: "#E91E63",
         fabric: "Premium Raw Silk Blend & Cotton Lining",
         description: "An ode to Indian heritage craftsmanship. Features hand-painted Pichwai lotus flowers and a holy cow motif along the border, tailored in a flattering straight silhouette with puffed sleeves and V-neckline.",
@@ -345,7 +388,7 @@ const products: Product[] = [
         originalPrice: "₹1,200",
         tag: "Summer Classic",
         image: "/images/gowns/maxi-floral-navy.jpg",
-        color: "Navy Blue & Multicolor",
+        color: "Ink Blue & Multicolor",
         colorCode: "#1A237E",
         fabric: "Soft Breathable Cotton Georgette",
         description: "A charming navy blue tiered maxi gown adorned with colorful vertical flora stripe patterns, featuring comfortable short sleeves and a breezy flowing silhouette.",
@@ -402,7 +445,7 @@ const products: Product[] = [
         originalPrice: "₹1,200",
         tag: "Safari Chic",
         image: "/images/gowns/maxi-leopard-brown.jpg",
-        color: "Cocoa Brown & Cream",
+        color: "Cocoa Black & Cream",
         colorCode: "#4E342E",
         fabric: "Soft Chanderi Cotton Blend",
         description: "A chic chocolate brown animal leopard print maxi gown styled with an elegant shirt collar, button-down bodice, and tiered flowing skirt.",
@@ -896,10 +939,71 @@ const categoryCircles: CategoryCircle[] = [
 export default function CollectionTabs() {
     const [activeTab, setActiveTab] = useState<CategoryType>('all');
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+    const [dynamicProducts, setDynamicProducts] = useState<Product[]>(products);
 
-    const filteredProducts = activeTab === 'all' 
-        ? products 
-        : products.filter(p => p.category === activeTab);
+    useEffect(() => {
+        if (!GOOGLE_SHEET_ID || GOOGLE_SHEET_ID === "YOUR_SPREADSHEET_ID_HERE") {
+            return;
+        }
+
+        const fetchGoogleSheetData = async () => {
+            try {
+                let csvUrl = "";
+                if (GOOGLE_SHEET_ID.startsWith("http://") || GOOGLE_SHEET_ID.startsWith("https://")) {
+                    csvUrl = GOOGLE_SHEET_ID;
+                } else {
+                    csvUrl = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/gviz/tq?tqx=out:csv`;
+                }
+                const response = await fetch(csvUrl);
+                if (!response.ok) throw new Error("Failed to fetch Google Sheet");
+                const csvText = await response.text();
+
+                const lines = csvText.split(/\r?\n/);
+                if (lines.length < 2) return;
+
+                const rows = lines.map(line => parseCSVLine(line));
+                const headers = rows[0].map(h => h.toLowerCase());
+
+                const idIdx = headers.indexOf("id");
+                const nameIdx = headers.indexOf("name");
+                const priceIdx = headers.indexOf("price");
+                const originalPriceIdx = headers.indexOf("originalprice");
+                const imageIdx = headers.indexOf("image");
+                const descriptionIdx = headers.indexOf("description");
+                const featuresIdx = headers.indexOf("features");
+
+                if (idIdx === -1) return;
+
+                const updatedProducts = products.map(prod => {
+                    const matchingRow = rows.find(r => r[idIdx] === prod.id);
+                    if (matchingRow) {
+                        return {
+                            ...prod,
+                            name: nameIdx !== -1 && matchingRow[nameIdx] ? matchingRow[nameIdx] : prod.name,
+                            price: priceIdx !== -1 && matchingRow[priceIdx] ? matchingRow[priceIdx] : prod.price,
+                            originalPrice: originalPriceIdx !== -1 && matchingRow[originalPriceIdx] ? matchingRow[originalPriceIdx] : prod.originalPrice,
+                            image: imageIdx !== -1 && matchingRow[imageIdx] ? convertGoogleDriveLink(matchingRow[imageIdx]) : prod.image,
+                            description: descriptionIdx !== -1 && matchingRow[descriptionIdx] ? matchingRow[descriptionIdx] : prod.description,
+                            features: featuresIdx !== -1 && matchingRow[featuresIdx]
+                                ? matchingRow[featuresIdx].split(';').map(f => f.trim()).filter(Boolean)
+                                : prod.features,
+                        };
+                    }
+                    return prod;
+                });
+
+                setDynamicProducts(updatedProducts);
+            } catch (error) {
+                console.error("Error loading Google Sheet prices:", error);
+            }
+        };
+
+        fetchGoogleSheetData();
+    }, []);
+
+    const filteredProducts = activeTab === 'all'
+        ? dynamicProducts
+        : dynamicProducts.filter(p => p.category === activeTab);
 
     const getCategoryBadgeLabel = (cat: string) => {
         switch (cat) {
@@ -929,8 +1033,8 @@ export default function CollectionTabs() {
                     <div className="circle-tabbar-track" role="tablist">
                         {categoryCircles.map((cat) => {
                             const count = cat.id === 'all'
-                                ? products.length
-                                : products.filter(p => p.category === cat.id).length;
+                                ? dynamicProducts.length
+                                : dynamicProducts.filter(p => p.category === cat.id).length;
                             const isActive = activeTab === cat.id;
 
                             return (
@@ -976,15 +1080,15 @@ export default function CollectionTabs() {
                             {/* Card Image Box */}
                             <div className="card-image-box" onClick={() => setSelectedProduct(product)}>
                                 <span className="product-badge-tag">{product.tag}</span>
-                                <img 
-                                    src={product.image} 
-                                    alt={product.name} 
+                                <img
+                                    src={product.image}
+                                    alt={product.name}
                                     className="product-img"
-                                    loading="lazy" 
+                                    loading="lazy"
                                 />
                                 <div className="card-hover-overlay">
-                                    <button 
-                                        type="button" 
+                                    <button
+                                        type="button"
                                         className="quick-view-btn"
                                         onClick={(e) => {
                                             e.stopPropagation();
@@ -1019,7 +1123,7 @@ export default function CollectionTabs() {
                                 {/* Natural Pair Suggestion */}
                                 {product.matchingAccessory && (
                                     <div className="card-pairing-hint" onClick={() => {
-                                        const match = products.find(p => p.name === product.matchingAccessory?.name);
+                                        const match = dynamicProducts.find(p => p.name === product.matchingAccessory?.name);
                                         if (match) setSelectedProduct(match);
                                     }}>
                                         <span className="hint-label">✦ Styled with:</span>
@@ -1043,7 +1147,7 @@ export default function CollectionTabs() {
                                         title="Order via WhatsApp"
                                     >
                                         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
                                         </svg>
                                         <span>Order</span>
                                     </a>
@@ -1058,8 +1162,8 @@ export default function CollectionTabs() {
             {selectedProduct && (
                 <div className="modal-backdrop" onClick={() => setSelectedProduct(null)}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                        <button 
-                            className="modal-close-btn" 
+                        <button
+                            className="modal-close-btn"
                             onClick={() => setSelectedProduct(null)}
                             aria-label="Close modal"
                         >
@@ -1093,12 +1197,12 @@ export default function CollectionTabs() {
                                             <span>✦ COMPLETE THE LOOK</span>
                                             <p>Recommended matching hair accessory to pair with this outfit:</p>
                                         </div>
-                                        <div 
-                                            className="styled-with-card" 
+                                        <div
+                                            className="styled-with-card"
                                             onClick={() => {
-                                                const match = products.find(p => p.name === selectedProduct.matchingAccessory?.name);
+                                                const match = dynamicProducts.find(p => p.name === selectedProduct.matchingAccessory?.name);
                                                 if (match) setSelectedProduct(match);
-                                            }} 
+                                            }}
                                             style={{ cursor: 'pointer' }}
                                         >
                                             <img src={selectedProduct.matchingAccessory.image} alt={selectedProduct.matchingAccessory.name} />
@@ -1130,7 +1234,7 @@ export default function CollectionTabs() {
                                         className="modal-wa-btn"
                                     >
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
                                         </svg>
                                         <span>Order on WhatsApp</span>
                                     </a>

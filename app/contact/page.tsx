@@ -187,7 +187,7 @@ export default function Contact() {
                         {/* Right Column: Interactive Bespoke Inquiry Form */}
                         <div className="contact-form-column">
                             <div className="contact-form-box">
-                                <h3>Send an Inquiry to Atelier</h3>
+                                <h3>Send an Enquiry to Atelier</h3>
                                 <p className="form-subtext">Fill out this form and we will connect with you via WhatsApp or Email.</p>
 
                                 {submitted ? (
@@ -201,7 +201,7 @@ export default function Contact() {
                                             className="btn-nihara-outline"
                                             style={{ marginTop: '1rem' }}
                                         >
-                                            Send Another Inquiry
+                                            Send Another Enquiry
                                         </button>
                                     </div>
                                 ) : (
@@ -271,7 +271,7 @@ export default function Contact() {
                                         </div>
 
                                         <button type="submit" className="form-submit-btn">
-                                            <span>Send Inquiry for {formData.inquiryType} on WhatsApp</span>
+                                            <span>Send Enquiry for {formData.inquiryType} on WhatsApp</span>
                                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                                 <path d="M5 12h14M12 5l7 7-7 7" />
                                             </svg>
