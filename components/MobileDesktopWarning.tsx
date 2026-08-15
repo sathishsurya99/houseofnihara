@@ -11,12 +11,20 @@ export default function MobileDesktopWarning() {
         // Detect mobile only after mounting to avoid hydration mismatch
         const ua = navigator.userAgent;
         // Accurate mobile detection excluding tablets (like iPad / Android tablets)
-        const isMobile = /iPhone|iPod|Windows Phone|BlackBerry|webOS/i.test(ua) || 
-                         (/Android/i.test(ua) && /Mobile/i.test(ua));
+        const isMobileUA = /iPhone|iPod|Windows Phone|BlackBerry|webOS/i.test(ua) || 
+                           (/Android/i.test(ua) && /Mobile/i.test(ua));
         
+        // Allow force testing via URL parameter: ?mobile=true or ?test=mobile
+        const urlParams = new URLSearchParams(window.location.search);
+        const forceMobile = urlParams.get("mobile") === "true" || urlParams.get("test") === "mobile";
+        
+        const isMobile = isMobileUA || forceMobile;
         const choice = localStorage.getItem("mobile_desktop_choice");
         
-        if (isMobile && choice !== "continue") {
+        console.log("[MobileWarning] isMobileUA:", isMobileUA, "forceMobile:", forceMobile, "localStorage choice:", choice);
+        
+        // If forceMobile is true, bypass localStorage check so it always appears for testing
+        if (isMobile && (choice !== "continue" || forceMobile)) {
             setIsOpen(true);
             document.body.style.overflow = "hidden";
         }
