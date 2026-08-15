@@ -9,10 +9,8 @@ export default function MobileDesktopWarning() {
         if (typeof window === "undefined" || !navigator) return;
 
         const ua = navigator.userAgent;
-        // Robust mobile detection (matches mobile agents or touchscreens)
-        const isMobileUA = /Mobi|Android|iPhone|iPod|iPad|Windows Phone|BlackBerry|webOS/i.test(ua);
-        const hasTouch = navigator.maxTouchPoints > 0;
-        const isMobile = isMobileUA || hasTouch;
+        // Detect mobile user agent (changes to a desktop user agent when "Desktop Site" is enabled in browser)
+        const isMobile = /Mobi|Android|iPhone|iPod|iPad|Windows Phone|BlackBerry|webOS/i.test(ua);
 
         // Force test override using query parameter (helps testing on desktop/emulators)
         const urlParams = new URLSearchParams(window.location.search);
