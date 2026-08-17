@@ -3021,11 +3021,12 @@ button {
   overflow: hidden;
   box-shadow: var(--shadow-md);
   border: 1px solid var(--color-border);
+  height: 650px;
+  width: 100%;
 }
 .detail-main-img {
   width: 100%;
-  height: auto;
-  max-height: 680px;
+  height: 100%;
   object-fit: cover;
   display: block;
 }
@@ -3261,8 +3262,11 @@ button {
   .detail-image-col {
     position: static;
   }
+  .detail-image-frame {
+    height: 520px;
+  }
   .detail-main-img {
-    max-height: 520px;
+    height: 100%;
   }
 }
 @media (max-width: 768px) {
@@ -3275,8 +3279,11 @@ button {
   .detail-current-price {
     font-size: 1.5rem;
   }
+  .detail-image-frame {
+    height: 420px;
+  }
   .detail-main-img {
-    max-height: 420px;
+    height: 100%;
   }
   .detail-actions-row {
     flex-direction: column;
