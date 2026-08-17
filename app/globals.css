@@ -2996,3 +2996,299 @@ button {
   font-weight: 500;
   letter-spacing: 0.5px;
 }
+
+/* =========================================
+   11. PRODUCT DETAIL PAGE STYLING
+   ========================================= */
+.product-detail-section {
+  padding: 10rem 0 6rem;
+  background: var(--background);
+}
+.product-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 4rem;
+  align-items: start;
+}
+.detail-image-col {
+  position: sticky;
+  top: 100px;
+}
+.detail-image-frame {
+  position: relative;
+  background: #f7f4ef;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
+}
+.detail-main-img {
+  width: 100%;
+  height: auto;
+  max-height: 680px;
+  object-fit: cover;
+  display: block;
+}
+.image-corner-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(18, 18, 18, 0.8);
+  color: var(--color-gold-light);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 0.3rem 0.75rem;
+  border-radius: 4px;
+}
+.detail-info-col {
+  display: flex;
+  flex-direction: column;
+}
+.detail-header-wrap {
+  margin-bottom: 1.2rem;
+}
+.detail-tag {
+  display: inline-block;
+  align-self: flex-start;
+  background: var(--color-rose-light);
+  color: var(--color-rose-dark);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  margin-bottom: 0.75rem;
+}
+.detail-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.4rem;
+  color: var(--color-black);
+}
+.detail-color-info {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  margin-bottom: 1rem;
+}
+.detail-price-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.detail-current-price {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-black);
+}
+.detail-original-price {
+  font-size: 1.1rem;
+  color: var(--color-muted);
+  text-decoration: line-through;
+}
+.detail-badge-saving {
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: #e8f5e9;
+  color: #2e7d32;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+}
+.detail-desc {
+  font-size: 0.95rem;
+  color: var(--color-charcoal);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+.detail-size-selection {
+  margin-bottom: 1.8rem;
+}
+.detail-size-selection h4 {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 0.75rem;
+  color: var(--color-black);
+  font-weight: 700;
+}
+.detail-styled-with-box {
+  background: #faf6f0;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 1.8rem;
+}
+.detail-features {
+  margin-bottom: 2rem;
+}
+.detail-features h4 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.6rem;
+}
+.detail-features ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  list-style: none;
+}
+.detail-features li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+.detail-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+.detail-wa-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: #ffffff !important;
+  padding: 0.9rem 2rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+  transition: all var(--transition-fast);
+}
+.detail-wa-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(37, 211, 102, 0.45);
+}
+.detail-back-link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-muted);
+  transition: color var(--transition-fast);
+}
+.detail-back-link:hover {
+  color: var(--color-rose-dark);
+}
+.detail-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+.detail-breadcrumb a:hover {
+  color: var(--color-rose-dark);
+}
+.breadcrumb-separator {
+  color: var(--color-border);
+}
+.breadcrumb-active {
+  color: var(--color-black);
+  font-weight: 600;
+}
+.product-detail-loading {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+.loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 3px solid var(--color-light-gray);
+  border-top: 3px solid var(--color-rose-dark);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.product-not-found-container {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+.error-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  background: var(--color-rose-light);
+  color: var(--color-rose-dark);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+}
+.product-not-found-container h2 {
+  font-size: 2.2rem;
+  margin-bottom: 0.8rem;
+  color: var(--color-black);
+}
+.product-not-found-container p {
+  color: var(--color-muted);
+  max-width: 420px;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .product-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .detail-image-col {
+    position: static;
+  }
+  .detail-main-img {
+    max-height: 520px;
+  }
+}
+@media (max-width: 768px) {
+  .product-detail-section {
+    padding: 8rem 0 4rem;
+  }
+  .detail-title {
+    font-size: 1.8rem;
+  }
+  .detail-current-price {
+    font-size: 1.5rem;
+  }
+  .detail-main-img {
+    max-height: 420px;
+  }
+  .detail-actions-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  .detail-wa-btn {
+    width: 100%;
+  }
+  .detail-back-link {
+    text-align: center;
+    display: block;
+    margin-top: 0.5rem;
+  }
+}
