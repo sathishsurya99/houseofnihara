@@ -6,7 +6,8 @@ import ScrollAnimation from "../components/ScrollAnimation";
 import MobileDesktopWarning from "../components/MobileDesktopWarning";
 
 export const viewport: Viewport = {
-  width: 1200,
+  width: "device-width",
+  initialScale: 1,
 };
 
 export const metadata: Metadata = {
@@ -45,7 +46,6 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
         <ScrollAnimation />
-        <MobileDesktopWarning />
       </body>
     </html>
   );
