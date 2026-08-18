@@ -6,7 +6,6 @@ export interface Product {
     originalPrice?: string;
     tag: string;
     image: string;
-    images?: string[];
     color: string;
     colorCode: string;
     fabric: string;
@@ -18,7 +17,6 @@ export interface Product {
     };
     features: string[];
 }
-
 
 export const GOOGLE_SHEET_ID: string = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRu88ByM6H3b0fbTZBZ6YdSEOsDdxbdMRBxoM93zeSSp22vLkBAWoiDO2Li9Bx_G5oRDa8UbZz-X2fK/pub?gid=0&single=true&output=csv";
 
