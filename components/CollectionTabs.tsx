@@ -266,7 +266,7 @@ export default function CollectionTabs() {
                     })}
                 </div>
             </div>
-            
+
             {/* Toast Notification */}
             <div className={`nihara-toast-container ${showToast ? 'show' : ''}`} role="alert" aria-live="assertive">
                 <div className="toast-icon">

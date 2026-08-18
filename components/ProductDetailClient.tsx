@@ -48,9 +48,12 @@ export default function ProductDetailClient({ productId }: ProductDetailClientPr
         loadPrices();
     }, []);
 
-    // Reset selected sizes when product ID changes (e.g. clicking complete the look accessories)
+    const [activeImageIndex, setActiveImageIndex] = useState<number>(0);
+
+    // Reset selected sizes and image index when product ID changes (e.g. clicking complete the look accessories)
     useEffect(() => {
         setSelectedSizes([]);
+        setActiveImageIndex(0);
     }, [productId]);
 
     const product = dynamicProducts.find(p => p.id === productId);
@@ -93,16 +96,36 @@ export default function ProductDetailClient({ productId }: ProductDetailClientPr
         ? dynamicProducts.find(p => p.name === product.matchingAccessory?.name)
         : null;
 
+    // Calculate discount percentage
+    const parsePrice = (priceStr: string) => {
+        const clean = priceStr.replace(/[^0-9]/g, '');
+        return clean ? parseInt(clean, 10) : 0;
+    };
+
+    let discountPercent = 0;
+    if (product.originalPrice && product.price) {
+        const cur = parsePrice(product.price);
+        const orig = parsePrice(product.originalPrice);
+        if (orig > 0 && cur < orig) {
+            discountPercent = Math.round(((orig - cur) / orig) * 100);
+        }
+    }
+
+    // Determine gallery images (fallback to duplicating main image for demo/visual completeness)
+    const galleryImages = product.images && product.images.length > 0
+        ? product.images
+        : [product.image, product.image, product.image];
+
     return (
         <section className="product-detail-section">
             <div className="container">
                 {/* Elegant Breadcrumbs */}
                 <div className="detail-breadcrumb">
                     <Link href="/">Home</Link>
-                    <span className="breadcrumb-separator">/</span>
-                    <Link href="/#collection-tabs">Collections</Link>
-                    <span className="breadcrumb-separator">/</span>
-                    <span className="breadcrumb-active">{getCategoryLabel(product.category)}</span>
+                    <span className="breadcrumb-separator">&gt;</span>
+                    <Link href="/#collection-tabs">Shop by</Link>
+                    <span className="breadcrumb-separator">&gt;</span>
+                    <span className="breadcrumb-active">{product.name}</span>
                 </div>
 
                 {/* Main Product Layout Grid */}
@@ -110,9 +133,34 @@ export default function ProductDetailClient({ productId }: ProductDetailClientPr
                     {/* Left Column: Media Showcase */}
                     <div className="detail-image-col">
                         <div className="detail-image-frame">
-                            <img src={product.image} alt={product.name} className="detail-main-img" />
-                            <span className="image-corner-badge">✦ Handmade</span>
+                            <img 
+                                src={galleryImages[activeImageIndex] || product.image} 
+                                alt={product.name} 
+                                className="detail-main-img" 
+                            />
+                            {discountPercent > 0 ? (
+                                <span className="image-discount-badge">{discountPercent}% OFF</span>
+                            ) : (
+                                <span className="image-corner-badge">✦ Handmade</span>
+                            )}
                         </div>
+
+                        {/* Thumbnail Gallery */}
+                        {galleryImages.length > 1 && (
+                            <div className="detail-thumbnail-row">
+                                {galleryImages.map((imgUrl, idx) => (
+                                    <button
+                                        key={idx}
+                                        type="button"
+                                        onClick={() => setActiveImageIndex(idx)}
+                                        className={`detail-thumbnail-btn ${activeImageIndex === idx ? 'active' : ''}`}
+                                        aria-label={`View product image ${idx + 1}`}
+                                    >
+                                        <img src={imgUrl} alt={`${product.name} view ${idx + 1}`} />
+                                    </button>
+                                ))}
+                            </div>
+                        )}
                     </div>
 
                     {/* Right Column: Information & Actions */}
