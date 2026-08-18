@@ -2552,6 +2552,15 @@ button {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .card-hover-overlay {
+    opacity: 1;
+    background: rgba(18, 18, 18, 0.2);
+  }
+
+  .quick-view-btn {
+    transform: translateY(0);
+  }
+
   .contact-collections-grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -2850,9 +2859,12 @@ button {
 }
 
 @keyframes floatIcon {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-6px);
   }
@@ -3004,16 +3016,19 @@ button {
   padding: 10rem 0 6rem;
   background: var(--background);
 }
+
 .product-detail-grid {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   gap: 4rem;
   align-items: start;
 }
+
 .detail-image-col {
   position: sticky;
   top: 100px;
 }
+
 .detail-image-frame {
   position: relative;
   background: #f7f4ef;
@@ -3026,6 +3041,7 @@ button {
   max-width: 550px;
   margin: 0 auto;
 }
+
 .detail-main-img {
   width: 100%;
   height: auto;
@@ -3033,6 +3049,7 @@ button {
   object-fit: contain;
   display: block;
 }
+
 .image-corner-badge {
   position: absolute;
   top: 1rem;
@@ -3046,13 +3063,16 @@ button {
   padding: 0.3rem 0.75rem;
   border-radius: 4px;
 }
+
 .detail-info-col {
   display: flex;
   flex-direction: column;
 }
+
 .detail-header-wrap {
   margin-bottom: 1.2rem;
 }
+
 .detail-tag {
   display: inline-block;
   align-self: flex-start;
@@ -3066,6 +3086,7 @@ button {
   border-radius: 20px;
   margin-bottom: 0.75rem;
 }
+
 .detail-title {
   font-size: 2.2rem;
   font-weight: 700;
@@ -3073,11 +3094,13 @@ button {
   margin-bottom: 0.4rem;
   color: var(--color-black);
 }
+
 .detail-color-info {
   font-size: 0.85rem;
   color: var(--color-muted);
   margin-bottom: 1rem;
 }
+
 .detail-price-box {
   display: flex;
   align-items: center;
@@ -3086,17 +3109,20 @@ button {
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--color-border);
 }
+
 .detail-current-price {
   font-family: var(--font-heading);
   font-size: 1.8rem;
   font-weight: 700;
   color: var(--color-black);
 }
+
 .detail-original-price {
   font-size: 1.1rem;
   color: var(--color-muted);
   text-decoration: line-through;
 }
+
 .detail-badge-saving {
   font-size: 0.72rem;
   font-weight: 600;
@@ -3105,15 +3131,18 @@ button {
   padding: 0.2rem 0.55rem;
   border-radius: 4px;
 }
+
 .detail-desc {
   font-size: 0.95rem;
   color: var(--color-charcoal);
   line-height: 1.6;
   margin-bottom: 1.5rem;
 }
+
 .detail-size-selection {
   margin-bottom: 1.8rem;
 }
+
 .detail-size-selection h4 {
   font-family: var(--font-body);
   font-size: 0.82rem;
@@ -3123,6 +3152,7 @@ button {
   color: var(--color-black);
   font-weight: 700;
 }
+
 .detail-styled-with-box {
   background: #faf6f0;
   border: 1px solid var(--color-border);
@@ -3130,21 +3160,25 @@ button {
   padding: 0.9rem 1.1rem;
   margin-bottom: 1.8rem;
 }
+
 .detail-features {
   margin-bottom: 2rem;
 }
+
 .detail-features h4 {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 0.6rem;
 }
+
 .detail-features ul {
   display: flex;
   flex-direction: column;
   gap: 0.45rem;
   list-style: none;
 }
+
 .detail-features li {
   display: flex;
   align-items: center;
@@ -3152,6 +3186,7 @@ button {
   font-size: 0.85rem;
   color: var(--color-muted);
 }
+
 .detail-actions-row {
   display: flex;
   align-items: center;
@@ -3159,6 +3194,7 @@ button {
   flex-wrap: wrap;
   margin-top: 1.5rem;
 }
+
 .detail-wa-btn {
   display: flex;
   align-items: center;
@@ -3175,19 +3211,23 @@ button {
   box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
   transition: all var(--transition-fast);
 }
+
 .detail-wa-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 22px rgba(37, 211, 102, 0.45);
 }
+
 .detail-back-link {
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--color-muted);
   transition: color var(--transition-fast);
 }
+
 .detail-back-link:hover {
   color: var(--color-rose-dark);
 }
+
 .detail-breadcrumb {
   display: flex;
   align-items: center;
@@ -3197,16 +3237,20 @@ button {
   margin-bottom: 2.5rem;
   flex-wrap: wrap;
 }
+
 .detail-breadcrumb a:hover {
   color: var(--color-rose-dark);
 }
+
 .breadcrumb-separator {
   color: var(--color-border);
 }
+
 .breadcrumb-active {
   color: var(--color-black);
   font-weight: 600;
 }
+
 .product-detail-loading {
   min-height: 70vh;
   display: flex;
@@ -3215,6 +3259,7 @@ button {
   justify-content: center;
   gap: 1.5rem;
 }
+
 .loading-spinner {
   width: 48px;
   height: 48px;
@@ -3223,10 +3268,17 @@ button {
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
+
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
+
 .product-not-found-container {
   min-height: 70vh;
   display: flex;
@@ -3236,6 +3288,7 @@ button {
   text-align: center;
   padding: 2rem;
 }
+
 .error-badge {
   font-size: 0.75rem;
   font-weight: 700;
@@ -3246,11 +3299,13 @@ button {
   border-radius: 20px;
   margin-bottom: 1rem;
 }
+
 .product-not-found-container h2 {
   font-size: 2.2rem;
   margin-bottom: 0.8rem;
   color: var(--color-black);
 }
+
 .product-not-found-container p {
   color: var(--color-muted);
   max-width: 420px;
@@ -3262,44 +3317,55 @@ button {
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
+
   .detail-image-col {
     position: static;
   }
+
   .detail-image-frame {
     height: auto;
     max-width: 450px;
   }
+
   .detail-main-img {
     height: auto;
     max-height: none;
   }
 }
+
 @media (max-width: 768px) {
   .product-detail-section {
     padding: 8rem 0 4rem;
   }
+
   .detail-title {
     font-size: 1.8rem;
   }
+
   .detail-current-price {
     font-size: 1.5rem;
   }
+
   .detail-image-frame {
     height: auto;
     max-width: 100%;
   }
+
   .detail-main-img {
     height: auto;
     max-height: none;
   }
+
   .detail-actions-row {
     flex-direction: column;
     align-items: stretch;
     gap: 1rem;
   }
+
   .detail-wa-btn {
     width: 100%;
   }
+
   .detail-back-link {
     text-align: center;
     display: block;
