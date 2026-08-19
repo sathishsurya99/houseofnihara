@@ -5,7 +5,8 @@ import Footer from "../components/Footer";
 import ScrollAnimation from "../components/ScrollAnimation";
 
 export const viewport: Viewport = {
-  width: 1200,
+  width: "device-width",
+  initialScale: 1,
 };
 
 export const metadata: Metadata = {
