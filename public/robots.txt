@@ -7,4 +7,3 @@ Host: https://houseofnihara.vercel.app
 
 # Sitemaps
 Sitemap: https://houseofnihara.vercel.app/sitemap.xml
-

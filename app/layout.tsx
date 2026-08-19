@@ -3,11 +3,9 @@ import "./globals.css";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import ScrollAnimation from "../components/ScrollAnimation";
-import MobileDesktopWarning from "../components/MobileDesktopWarning";
 
 export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
+  width: 1200,
 };
 
 export const metadata: Metadata = {
